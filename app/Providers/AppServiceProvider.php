@@ -14,10 +14,14 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(ApiClientInterface::class, function ($app) {
-            return new NytApiClient(
-                config('nyt.base_url'),
-                config('nyt.api_key')
-            );
+            $baseUrl = config('nyt.base_url');
+            $apiKey = config('nyt.api_key');
+
+            if (!$baseUrl || !$apiKey) {
+                throw new \RuntimeException('NYT API configuration is missing');
+            }
+
+            return new NytApiClient($baseUrl, $apiKey);
         });
     }
 

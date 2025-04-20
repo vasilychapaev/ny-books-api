@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'base_url' => env('NYT_API_URL'),
+    'base_url' => env('NYT_API_BASE_URL'),
     'api_key' => env('NYT_API_KEY'),
     
     'endpoints' => [
