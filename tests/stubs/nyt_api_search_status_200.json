@@ -1,0 +1,17 @@
+{
+    "status": "OK",
+    "copyright": "Copyright (c) 2024 The New York Times Company. All Rights Reserved.",
+    "num_results": 2,
+    "results": [
+        {
+            "title": "Book 1",
+            "author": "Author 1",
+            "isbn": ["1234567890"]
+        },
+        {
+            "title": "Book 2",
+            "author": "Author 2",
+            "isbn": ["0987654321"]
+        }
+    ]
+} 

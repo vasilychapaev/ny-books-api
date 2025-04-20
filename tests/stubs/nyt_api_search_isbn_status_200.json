@@ -1,0 +1,12 @@
+{
+    "status": "OK",
+    "copyright": "Copyright (c) 2024 The New York Times Company. All Rights Reserved.",
+    "num_results": 1,
+    "results": [
+        {
+            "title": "Specific Book",
+            "author": "Specific Author",
+            "isbn": ["0399178570"]
+        }
+    ]
+} 
