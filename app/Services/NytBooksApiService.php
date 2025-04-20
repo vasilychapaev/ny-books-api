@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\ExternalApi\ApiClientInterface;
+use Illuminate\Support\Facades\Cache;
 
 class NytBooksApiService
 {
@@ -12,26 +13,32 @@ class NytBooksApiService
 
     public function getHistory(array $params): array
     {
-        $response = $this->apiClient->get(
-            config('nyt.endpoints.best_sellers_history'),
-            $params
-        );
+        $cacheKey = 'nyt_history_' . md5(json_encode($params));
+        
+        return Cache::remember($cacheKey, config('nyt.cache.ttl'), function () use ($params) {
+            $response = $this->apiClient->get(
+                config('nyt.endpoints.best_sellers_history'),
+                $params
+            );
 
-        return [
-            'num_results' => $response['num_results'] ?? 0,
-            'data' => $response['results'] ?? [],
-        ];
+            return [
+                'num_results' => $response['num_results'] ?? 0,
+                'data' => $response['results'] ?? [],
+            ];
+        });
     }
 
     public function getListsNames(): array
     {
-        $response = $this->apiClient->get(
-            config('nyt.endpoints.lists_names')
-        );
+        return Cache::remember('nyt_lists_names', config('nyt.cache.ttl'), function () {
+            $response = $this->apiClient->get(
+                config('nyt.endpoints.lists_names')
+            );
 
-        return [
-            'num_results' => $response['num_results'] ?? 0,
-            'data' => $response['results'] ?? [],
-        ];
+            return [
+                'num_results' => $response['num_results'] ?? 0,
+                'data' => $response['results'] ?? [],
+            ];
+        });
     }
 } 
