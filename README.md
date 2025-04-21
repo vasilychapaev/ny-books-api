@@ -14,15 +14,10 @@ We care deeply about API integrations, both internal and external. Respecting th
 # 1. Create New York Times API Credentials
 
 Create your own API credentials to access the NYT API:
-
 1. Create a New York Times developer account: https://developer.nytimes.com/accounts/create
-
 2. Go to create a New App: https://developer.nytimes.com/my-apps/new-app
-
 3. Enable the Books API.
-
 4. Create your app.
-
 5. Copy your API key locally.
 
 
@@ -30,11 +25,10 @@ Create your own API credentials to access the NYT API:
 # 2. Create the Laravel JSON API
 
 Create an endpoint around the NYT Best Sellers endpoint. The endpoint should support the following subset of the NYT API's Query Parameters:
-
-● author : string
-● isbn[] : string
-● title : string
-● offset : integer
+    ● author : string
+    ● isbn[] : string
+    ● title : string
+    ● offset : integer
 
 
 
@@ -42,4 +36,14 @@ Create an endpoint around the NYT Best Sellers endpoint. The endpoint should sup
 
 Please publish your code to a Git service and send us a link.
 
+
+
+# 4. SOLUTION: How to use
+
+- Clone repository
+- Run ``composer install``
+- copy ``.env.example`` and rename to ``.env``
+- Fill out ``NYT_API_KEY`` environment variables
+- Run ``php artisan key:generate``
+- Run ``php artisan test`` to run tests
 
